@@ -1,46 +1,62 @@
 <template>
-  <section id="body">
-    {{ count }}
-    <List :data="todo" />
-    <List :data="todo" />
-    <List :data="todo" />
-  </section>
+  <el-main :direction="horizontal">
+    <el-row justify="space-evenly">
+      <el-col :span="6">
+        <List :data="todo" type="Todo" />
+      </el-col>
+      <el-col :span="6">
+        <List :data="doing" type="Doing" />
+      </el-col>
+      <el-col :span="6">
+        <List :data="done" type="Done" />
+      </el-col>
+    </el-row>
+  </el-main>
 </template>
 
 <script>
 import List from './List.vue';
-import { useStore } from '../store.js';
+import { TodoStore } from '../TodoStore.js';
 export default {
   components: { List },
   setup() {
-    const {count} = useStore();
-    return { count };
+    const todoStore = TodoStore();
+    return { todoStore };
   },
   data() {
-    return {
-      todo: [
-        { id: '001', title: '吃饭' },
-        { id: '002', title: '睡觉' },
-        { id: '003', title: '学习' }
-      ],
-      doing: [
-        { id: '004', title: '吃饭' },
-        { id: '005', title: '睡觉' },
-        { id: '006', title: '学习' }
-      ],
-      done: [
-        { id: '007', title: '吃饭' },
-        { id: '008', title: '睡觉' },
-        { id: '009', title: '学习' }
-      ]
-    };
+    return {};
+  },
+  computed: {
+    todo() {
+      get: {
+        return this.todoStore.todo.filter((item) => {
+          if (item.state === 0) {
+            return item;
+          }
+        });
+      }
+    },
+    doing() {
+      get: {
+        return this.todoStore.todo.filter((item) => {
+          if (item.state === 1) {
+            return item;
+          }
+        });
+      }
+    },
+    done() {
+      get: {
+        return this.todoStore.todo.filter((item) => {
+          if (item.state === 2) {
+            return item;
+          }
+        });
+      }
+    }
   }
 };
 </script>
 
 <style>
-#body {
-  display: grid;
-  grid-template-columns: repeat(3, 33.3%);
-}
 </style>
