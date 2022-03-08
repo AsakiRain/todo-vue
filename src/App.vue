@@ -25,10 +25,10 @@ export default {
 </template>
 
 <style>
-body{
+body {
   min-width: 1280px;
 }
-.el-header{
+.el-header {
   margin-bottom: 20px;
 }
 </style>

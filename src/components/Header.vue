@@ -1,13 +1,12 @@
 <template>
-    <h1>TODOList</h1>
+  <h1>TODOList</h1>
 </template>
 
 <script>
 export default {
-  name:"Header",
+  name: 'Header'
 };
 </script>
 
 <style>
-
 </style>

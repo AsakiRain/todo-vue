@@ -24,13 +24,13 @@ export const TodoStore = defineStore({
       this.todo.push(todo);
       this.lsStore();
     },
-    changeState(act,todoId) {
+    changeState(act, todoId) {
       this.todo.forEach((item) => {
         if (item.id === todoId) {
           if (act === 1 && item.state < 2) {
             item.state++;
           }
-          if(act === -1 && item.state > 0){
+          if (act === -1 && item.state > 0) {
             item.state--;
           }
         }
