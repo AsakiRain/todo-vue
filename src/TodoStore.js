@@ -8,7 +8,7 @@ export const TodoStore = defineStore({
   id: "TodoStore",
   state() {
     return {
-      todo: JSON.parse(localStorage.todo || []),
+      todo: localStorage.todo ? JSON.parse(localStorage.todo) : [],
     }
   },
   actions: {
